@@ -6,7 +6,7 @@ import ftn.isa.model.Enums.BloodTypeENUM;
 
 public class Questionnaire 
 {
-	private int id;
+	private Long id;
 	private Appointment appointment;
 	private Patient patient;
 	private String description;
@@ -16,10 +16,10 @@ public class Questionnaire
 	private Date date;
 	private double weight;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Appointment getAppointment() {

@@ -4,19 +4,19 @@ import ftn.isa.model.Enums.AppointmentStatusENUM;
 
 public class Appointment 
 {
-	private int id;
+	private Long id;
 	private MedicalCenter medicalCenter;//foreign key
 	private Patient patient;//foreign key
 	private MedicalStaff medicalStaff;//foreign key
 	private AppointmentPeriod appointmentPeriod;
 	private AppointmentStatusENUM appointmentStatus;
 	
-	public int getId() 
+	public Long getId() 
 	{
 		return id;
 	}
 	
-	public void setId(int id) 
+	public void setId(Long id) 
 	{
 		this.id = id;
 	}

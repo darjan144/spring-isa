@@ -16,14 +16,13 @@ public class UserServiceImpl implements UserService
 	@Autowired
 	private InMemoryUserRepository userRepository;
 	
-
 	@Override
 	public Collection<User> findAll() {
 		return null;
 	}
 
 	@Override
-	public User findOne(int id) {
+	public User findOne(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -41,22 +40,20 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public User delete(int id) {
+	public User delete(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User updateGreetingText(UserDTO userDTO, int id) throws Exception {
+	public User updateUserText(UserDTO userDTO, Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<User> searchGreetings(Optional<String> text) {
+	public ArrayList<User> searchUsers(Optional<String> text) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 }

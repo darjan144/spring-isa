@@ -7,6 +7,7 @@ public class Patient extends User
 	private LoyaltyCategoryENUM loyaltyCategory;
 	private int points;
 	private int numberOfPenalties;
+	
 	public LoyaltyCategoryENUM getLoyaltyCategory() {
 		return loyaltyCategory;
 	}

@@ -4,19 +4,19 @@ import ftn.isa.model.Enums.RoleENUM;
 
 public class User 
 {
-	private int Id;
+	private Long Id;
 	private String email;
 	private String password;
 	private RoleENUM role;
 	private PersonalInfo personalInfo;
 
 	
-	public int getId() 
+	public Long getId() 
 	{
 		return Id;
 	}
 	
-	public void setId(int id) 
+	public void setId(Long id) 
 	{
 		Id = id;
 	}
