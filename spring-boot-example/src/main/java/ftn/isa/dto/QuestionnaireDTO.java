@@ -17,7 +17,6 @@ public class QuestionnaireDTO
 	private Date date;
 	private double weight;
 	
-	
 	public QuestionnaireDTO() {}
 	
 	public QuestionnaireDTO(Questionnaire questionnaire) 

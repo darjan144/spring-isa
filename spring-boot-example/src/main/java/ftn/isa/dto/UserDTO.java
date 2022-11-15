@@ -66,9 +66,4 @@ public class UserDTO
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
-	
-
-
-	
-	
 }

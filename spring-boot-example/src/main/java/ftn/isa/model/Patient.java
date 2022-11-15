@@ -49,6 +49,14 @@ public class Patient extends User
 	public void setNumberOfPenalties(int numberOfPenalties) {
 		this.numberOfPenalties = numberOfPenalties;
 	}
+
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
+	}
+
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
+	}
 	
 	
 	

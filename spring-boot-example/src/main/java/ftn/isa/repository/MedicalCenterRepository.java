@@ -1,5 +1,10 @@
 package ftn.isa.repository;
 
-public class MedicalCenterRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import ftn.isa.model.MedicalCenter;
+
+public interface MedicalCenterRepository extends JpaRepository<MedicalCenter,Long>
+{
 
 }

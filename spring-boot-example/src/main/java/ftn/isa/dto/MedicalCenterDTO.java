@@ -14,8 +14,8 @@ public class MedicalCenterDTO
 	private Address address;
 	private String description;
 	private double avgRating;
-	private List<Appointment> appointments; //???
-	private List<MedicalStaff> medicalStaff; //?? serijalizacija??
+	private List<Appointment> appointments; 
+	private List<MedicalStaff> medicalStaff;
 	
 	public MedicalCenterDTO() {}
 	
