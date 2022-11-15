@@ -103,7 +103,7 @@ public class UserController
 		
 		try 
 		{
-			savedUser = userService.create(user);
+			savedUser = userService.save(user);
 			return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
 		}
 		catch(Exception e)
@@ -135,7 +135,7 @@ public class UserController
 		
 		try 
 		{
-			updatedUser = userService.update(userForUpdate);
+			updatedUser = userService.save(userForUpdate);
 		}
 		catch (Exception e) 
 		{
@@ -152,24 +152,6 @@ public class UserController
 	}
 	
 	
-	/*
-	 * url: DELETE /api/greetings/1
-	 */
-	
-	/*
-	@Operation(summary = "Deletes a greeting", description = "Deletes a greeting", method = "DELETE")
-	@ApiResponses(value = { @ApiResponse(responseCode = "404", description = "Greeting not found", content = @Content),
-							@ApiResponse(responseCode = "204", description = "Greeting successfully deleted", content = @Content) } )
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Greeting> deleteGreeting(@Parameter(description = "Greeting id to delete", required = true) @PathVariable("id") Long id) {
-		Greeting deletedGreeting = greetingService.delete(id);
-		if (deletedGreeting == null) {
-			return new ResponseEntity<Greeting>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Greeting>(HttpStatus.NO_CONTENT);
-	}
-	*/
-	
 	@Operation(summary = "Deletes a user",description = "Deletes a user", method = "DELETE")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode="404",description = "User not found", content = @Content),
@@ -178,13 +160,16 @@ public class UserController
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<User> deleteUser(@Parameter(description = "Getting id to delete",required=true) @PathVariable("id") Long id)
 	{
-		User deletedUser = userService.delete(id);
+		User userToDelete = userService.findOne(id);
 		
-		if(deletedUser==null) 
+		if(userToDelete!=null) 
 		{
-			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+			userService.remove(id);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		
-		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		else 
+		{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}							
 	}
 }

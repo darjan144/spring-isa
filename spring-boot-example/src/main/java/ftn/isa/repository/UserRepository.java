@@ -1,17 +1,10 @@
 package ftn.isa.repository;
 
 import java.util.Collection;
+import org.springframework.data.jpa.repository.JpaRepository;
 import ftn.isa.model.User;
 
-public interface UserRepository 
+public interface UserRepository extends JpaRepository<User,Long>
 {
-	Collection<User> findAll();
 
-	User create(User user);
-
-	User findOne(Long id);
-	
-	User update(User user);
-
-	User delete(int id);	
 }

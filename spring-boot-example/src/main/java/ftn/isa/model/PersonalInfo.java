@@ -1,17 +1,36 @@
 package ftn.isa.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
 import ftn.isa.model.Enums.GenderENUM;
 
+@Embeddable
 public class PersonalInfo 
 {
-	//again private?
+	@Column(name = "firstName", nullable = false)
 	private String firstName;
+	
+	@Column(name = "lastName", nullable = false)
 	private String lastName;
+	
+	@Column(name = "PID", unique = true, nullable = false)
 	private String pid;
+	
+	@Embedded
 	private Address address;
+	
+	@Column(name = "gender",nullable = false)
 	private GenderENUM gender;
+	
+	@Column(name = "phoneNumber", unique = true, nullable = false)
 	private String phoneNumber;
+	
+	@Column(name = "placeOfEmployment")
 	private String placeOfEmployment;
+	
+	
 	public String getFirstName() {
 		return firstName;
 	}

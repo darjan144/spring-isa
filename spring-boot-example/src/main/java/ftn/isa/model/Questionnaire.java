@@ -2,19 +2,47 @@ package ftn.isa.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import ftn.isa.model.Enums.BloodTypeENUM;
 
+@Entity
 public class Questionnaire 
 {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Appointment appointment;
+
+	@OneToOne(mappedBy = "questionnaire")
 	private Patient patient;
+	
+	@Column
 	private String description;
+	
+	@Column
 	private BloodTypeENUM bloodType;
+	
+	@Column
 	private String bloodPressure;
+	
+	@Column
 	private String symptoms;
+	
+	@Column
 	private Date date;
+	
+	@Column
 	private double weight;
+	
+	public Questionnaire() {
+		
+	}
 	
 	public Long getId() {
 		return id;
@@ -22,12 +50,7 @@ public class Questionnaire
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Appointment getAppointment() {
-		return appointment;
-	}
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
-	}
+
 	public Patient getPatient() {
 		return patient;
 	}

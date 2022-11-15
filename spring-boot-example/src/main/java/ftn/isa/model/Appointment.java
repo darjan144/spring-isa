@@ -1,15 +1,46 @@
 package ftn.isa.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import ftn.isa.model.Enums.AppointmentStatusENUM;
 
+@Entity
 public class Appointment 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@ManyToOne
+	@JoinColumn
 	private MedicalCenter medicalCenter;//foreign key
+	
+	@Column
 	private Patient patient;//foreign key
+	
+	@Column
 	private MedicalStaff medicalStaff;//foreign key
+	
+	@Column
 	private AppointmentPeriod appointmentPeriod;
+	
+	@Column
 	private AppointmentStatusENUM appointmentStatus;
+	
+	@Column
+	private Date createdAt;
+	
+	@Column
+	private Date updatedAt;
 	
 	public Long getId() 
 	{
@@ -63,5 +94,22 @@ public class Appointment
 	public void setAppointmentStatus(AppointmentStatusENUM appointmentStatus) 
 	{
 		this.appointmentStatus = appointmentStatus;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}	
+		
 }

@@ -1,26 +1,36 @@
 package ftn.isa.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
-import ftn.isa.dto.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import ftn.isa.model.User;
+import ftn.isa.repository.UserRepository;
 
-
-public interface UserService 
+@Service
+public class UserService 
 {
-	Collection<User> findAll();
-
-	User findOne(Long id);
-
-	User create(User user) throws Exception;
-
-	User update(User user) throws Exception;
-
-	User delete(Long id);
-
-	User updateUserText(UserDTO userDTO, Long id) throws Exception;
-
-	ArrayList<User> searchUsers(Optional<String> text);
+	@Autowired
+	private UserRepository userRepository;
+	
+	public User findOne(Long id) 
+	{
+		return userRepository.findById(id).orElseGet(null);
+	}
+	
+	public List<User> findAll()
+	{
+		return userRepository.findAll();
+	}
+	
+	public User save(User user) 
+	{		
+		return userRepository.save(user);
+	}
+	
+	public void remove(Long id) 
+	{
+		userRepository.deleteById(id);
+	}	
 }

@@ -1,7 +1,5 @@
 package ftn.isa;
 
-import ftn.isa.controller.AssetController;
-import ftn.isa.service.AssetService;
 import org.springframework.boot.ConfigurableBootstrapContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,10 +29,10 @@ public class SpringBootExampleApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(SpringBootExampleApplication.class, args);
 
 		// svi registrovani bean-ovi interfejsa AssetService
-		ctx.getBeansOfType(AssetService.class).values().stream().forEach(System.out::println);
+		//ctx.getBeansOfType(AssetService.class).values().stream().forEach(System.out::println);
 
-		AssetController assetController = ctx.getBean(AssetController.class);
-		assetController.getAssets().stream().forEach(x -> System.out.println(x.getName()));
+	//	AssetController assetController = ctx.getBean(AssetController.class);
+	//	assetController.getAssets().stream().forEach(x -> System.out.println(x.getName()));
 	}
 
 }

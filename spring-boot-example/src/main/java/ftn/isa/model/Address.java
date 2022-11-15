@@ -1,9 +1,19 @@
 package ftn.isa.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address 
 {
+	@Column(name="location")
 	private String location; //street name and number
+	
+	@Column(name = "city")
+	
 	private String city;
+	
+	@Column(name = "country")
 	private String country;
 	
 	public String getLocation() 
