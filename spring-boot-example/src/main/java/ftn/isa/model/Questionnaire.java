@@ -19,8 +19,8 @@ public class Questionnaire
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne(mappedBy = "questionnaire")
-	private Patient patient;
+	@Column
+	private Long patientId;
 	
 	@Column
 	private String description;
@@ -44,6 +44,23 @@ public class Questionnaire
 		
 	}
 	
+	
+	
+	public Questionnaire(Long id, Long patientId, String description, BloodTypeENUM bloodType, String bloodPressure,
+			String symptoms, Date date, double weight) {
+		super();
+		this.id = id;
+		this.patientId = patientId;
+		this.description = description;
+		this.bloodType = bloodType;
+		this.bloodPressure = bloodPressure;
+		this.symptoms = symptoms;
+		this.date = date;
+		this.weight = weight;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -51,12 +68,21 @@ public class Questionnaire
 		this.id = id;
 	}
 
-	public Patient getPatient() {
-		return patient;
+
+	
+	
+	public Long getPatientId() {
+		return patientId;
 	}
-	public void setPatient(Patient patient) {
-		this.patient = patient;
+
+
+
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
 	}
+
+
+
 	public String getDescription() {
 		return description;
 	}

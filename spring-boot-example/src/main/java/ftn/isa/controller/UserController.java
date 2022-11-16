@@ -1,6 +1,8 @@
 package ftn.isa.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,26 +17,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ftn.isa.dto.UserDTO;
+import ftn.isa.mappers.UserMapper;
 import ftn.isa.model.User;
 import ftn.isa.service.UserService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
-//CRUD IS DONE HERE??
 
-@Tag(name = "User controller", description = "The User API")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("api/user")
 public class UserController 
 {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserMapper userMapper;
 	
 	/*
 	 * Get all users
@@ -42,17 +38,18 @@ public class UserController
 	 * url: /api/user GET
 	 */
 	
-	@Operation(summary = "Get all users", description = "Get all users", method="GET")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode="200", description = "Successful operation",
-					content = @Content(mediaType="application/json",
-					array = @ArraySchema(schema=@Schema(implementation=User.class))))
-	})
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<User>> getUsers()
+	@GetMapping(value="/all",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<UserDTO>> getAllUsers()
 	{	
-		Collection<User> users = userService.findAll();
-		return new ResponseEntity<Collection<User>>(users,HttpStatus.OK);
+		List<User> users = userService.findAll();
+		List<UserDTO> usersDTO = new ArrayList<>();
+		
+		for(User user : users) 
+		{
+			usersDTO.add(new UserDTO(user));
+		}
+		
+		return new ResponseEntity<>(usersDTO, HttpStatus.OK);
 	}
 	
 	
@@ -61,26 +58,18 @@ public class UserController
 	 * 
 	 * url: /api/users/1 GET
 	 */
-	@Operation(summary = "Get user by id", description = "Get greeting by id", method = "GET")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode="200", description = "found user by id",
-					content = @Content(mediaType = "application/json",
-					schema = @Schema(implementation = User.class))),
-			@ApiResponse(responseCode="404",description = "user not found", content = @Content)												
-	})
+
 	@GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getUser(@Parameter(name="id",description ="ID of a user to return",required = true)@PathVariable("id")int id)
+	public ResponseEntity<UserDTO> getUser(@PathVariable("id")Long id)
 	{
-		//User user = userService.findOne(id); //implement this method??
+		User user = userService.findOne(id);
 		
-		User user = null;
-		
-		if(user == null) 
+		if(user == null)
 		{
-			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<User>(user,HttpStatus.OK);
+		return new ResponseEntity<>(new UserDTO(user),HttpStatus.OK);
 	}
 	
 	/*
@@ -89,48 +78,25 @@ public class UserController
 	 * url: /api/users POST
 	 */
 	
-	@Operation(summary = "Create new user", description = "Create new user",method = "POST")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201",description = "Created",content = {@Content(mediaType = "application/json",schema = @Schema(implementation = User.class)) }),
-			
-			@ApiResponse(responseCode = "409",description = "Not possible to create new user when given id not null",content = @Content)
-			
-	})
+
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> createUser(@RequestBody User user)
+	public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO)
 	{
-		User savedUser = null;
+		User user = userMapper.toUser(userDTO);
 		
-		try 
-		{
-			savedUser = userService.save(user);
-			return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return new ResponseEntity<User>(savedUser,HttpStatus.CONFLICT);
-		}
+		userService.save(user);
+		
+		return new ResponseEntity<>(userMapper.toDTO(user),HttpStatus.CREATED);
 	}
-		
-	
+					
 	/*
 	 * url: PUT /api/users/1
 	 */
-	@Operation(summary = "Update an existing user", description = "Update an existing user")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200",description = "User successfully edit",
-					content = {@Content(mediaType = "application/json",schema = @Schema(implementation = User.class)) }
-						),
-			@ApiResponse(responseCode = "404", description = "User not found",content = @Content),
-			@ApiResponse(responseCode="500",description = "Internal server error",content = @Content)
-	})
+
 	@PutMapping(value="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@RequestBody User user)
 	{
-		User userForUpdate = userService.findOne(user.getId());
-		//userForUpdate.copyValues(user); UPDATE THIS IN THE MODEL??
-		
+		User userForUpdate = userService.findOne(user.getId());	
 		User updatedUser = null;
 		
 		try 
@@ -152,13 +118,9 @@ public class UserController
 	}
 	
 	
-	@Operation(summary = "Deletes a user",description = "Deletes a user", method = "DELETE")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode="404",description = "User not found", content = @Content),
-			@ApiResponse(responseCode = "204",description = "User successfully deleted",content = @Content)
-	})
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<User> deleteUser(@Parameter(description = "Getting id to delete",required=true) @PathVariable("id") Long id)
+	public ResponseEntity<User> deleteUser(@PathVariable("id") Long id)
 	{
 		User userToDelete = userService.findOne(id);
 		

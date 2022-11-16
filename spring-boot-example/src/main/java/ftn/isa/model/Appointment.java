@@ -3,6 +3,7 @@ package ftn.isa.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,13 +25,13 @@ public class Appointment
 	@JoinColumn
 	private MedicalCenter medicalCenter;//foreign key
 	
-	@Column
+	@OneToOne
 	private Patient patient;//foreign key
 	
-	@Column
+	@OneToOne
 	private MedicalStaff medicalStaff;//foreign key
 	
-	@Column
+	@Embedded
 	private AppointmentPeriod appointmentPeriod;
 	
 	@Column

@@ -13,7 +13,7 @@ import ftn.isa.model.Enums.EmployeeRoleENUM;
 @DiscriminatorValue("MS")
 public class MedicalStaff extends User
 {
-	@Column
+	@Column(name = "employeeRole")
 	private EmployeeRoleENUM employeeRole;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

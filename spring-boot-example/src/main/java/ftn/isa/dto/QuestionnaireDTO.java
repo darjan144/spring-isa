@@ -9,7 +9,9 @@ import ftn.isa.model.Enums.BloodTypeENUM;
 public class QuestionnaireDTO 
 {
 	private Long id;
-	private Patient patient;
+	
+	private Long patientId;
+	
 	private String description;
 	private BloodTypeENUM bloodType;
 	private String bloodPressure;
@@ -21,16 +23,15 @@ public class QuestionnaireDTO
 	
 	public QuestionnaireDTO(Questionnaire questionnaire) 
 	{
-		this(questionnaire.getId(),questionnaire.getPatient(),questionnaire.getDescription(),
-				questionnaire.getBloodType(),questionnaire.getBloodPressure(),questionnaire.getSymptoms(),questionnaire.getDate(),questionnaire.getWeight());
+		this();
 	}
 	
 
-	public QuestionnaireDTO(Long id, Patient patient, String description, BloodTypeENUM bloodType, String bloodPressure,
+	public QuestionnaireDTO(Long id, Long patientId, String description, BloodTypeENUM bloodType, String bloodPressure,
 			String symptoms, Date date, double weight) {
 		super();
 		this.id = id;
-		this.patient = patient;
+		this.patientId = patientId;
 		this.description = description;
 		this.bloodType = bloodType;
 		this.bloodPressure = bloodPressure;
@@ -43,9 +44,10 @@ public class QuestionnaireDTO
 		return id;
 	}
 
-	public Patient getPatient() {
-		return patient;
+	public Long getPatientId() {
+		return patientId;
 	}
+
 	public String getDescription() {
 		return description;
 	}

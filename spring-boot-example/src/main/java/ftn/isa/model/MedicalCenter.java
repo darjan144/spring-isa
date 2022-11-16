@@ -1,5 +1,6 @@
 package ftn.isa.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +47,23 @@ public class MedicalCenter
 	
 	public MedicalCenter() {}
 	
+	
+	
+	public MedicalCenter(Long id, String name, Address address, String description, double avgRating) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.description = description;
+		this.avgRating = avgRating;
+		this.appointments = new ArrayList<>();
+		this.medicalStaff = new ArrayList<>();
+		//this.createdAt = createdAt;
+		//this.updatedAt = updatedAt;
+	}
+
+
+
 	public Long getId() 
 	{
 		return id;

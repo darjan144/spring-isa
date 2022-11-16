@@ -1,11 +1,8 @@
 package ftn.isa;
 
-import org.springframework.boot.ConfigurableBootstrapContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.Arrays;
 
 /*
  * @SpringBootApplication anotacija obuhvata
@@ -24,15 +21,9 @@ import java.util.Arrays;
 @SpringBootApplication
 public class SpringBootExampleApplication {
 
-	public static void main(String[] args) {
-
-		ConfigurableApplicationContext ctx = SpringApplication.run(SpringBootExampleApplication.class, args);
-
-		// svi registrovani bean-ovi interfejsa AssetService
-		//ctx.getBeansOfType(AssetService.class).values().stream().forEach(System.out::println);
-
-	//	AssetController assetController = ctx.getBean(AssetController.class);
-	//	assetController.getAssets().stream().forEach(x -> System.out.println(x.getName()));
+	public static void main(String[] args) 
+	{
+		SpringApplication.run(SpringBootExampleApplication.class, args);
 	}
 
 }

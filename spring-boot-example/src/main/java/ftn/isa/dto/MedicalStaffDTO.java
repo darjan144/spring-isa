@@ -7,8 +7,7 @@ import ftn.isa.model.Enums.EmployeeRoleENUM;
 public class MedicalStaffDTO extends UserDTO
 {
 	private EmployeeRoleENUM employeeRole;
-	private MedicalCenter medicalCenter;
-	
+	private MedicalCenter medicalCenter;	
 	
 	public MedicalStaffDTO() {}
 	
@@ -30,8 +29,4 @@ public class MedicalStaffDTO extends UserDTO
 	public MedicalCenter getMedicalCenter() {
 		return medicalCenter;
 	}
-	
-	
-	
-		
 }

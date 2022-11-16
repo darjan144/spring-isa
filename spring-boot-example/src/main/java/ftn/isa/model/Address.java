@@ -16,6 +16,16 @@ public class Address
 	@Column(name = "country")
 	private String country;
 	
+	public Address() {}
+	
+	public Address(String location, String city, String country) 
+	{
+		super();
+		this.location = location;
+		this.city = city;
+		this.country = country;
+	}
+
 	public String getLocation() 
 	{
 		return location;

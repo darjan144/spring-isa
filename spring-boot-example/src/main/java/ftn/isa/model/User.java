@@ -3,7 +3,9 @@ package ftn.isa.model;
 
 import static javax.persistence.DiscriminatorType.STRING;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Embedded;
@@ -12,13 +14,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 import ftn.isa.model.Enums.RoleENUM;
 
 @Entity
 @Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(name="role",discriminatorType=STRING)
+@DiscriminatorColumn(name="roleName",discriminatorType=STRING)
+@Table(name="\"User\"")
 public class User 
 {
 	@Id

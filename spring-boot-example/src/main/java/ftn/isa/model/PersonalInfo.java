@@ -30,6 +30,20 @@ public class PersonalInfo
 	@Column(name = "placeOfEmployment")
 	private String placeOfEmployment;
 	
+	public PersonalInfo() {}
+	
+	public PersonalInfo(String firstName, String lastName, String pid, Address address, GenderENUM gender,
+			String phoneNumber, String placeOfEmployment) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.pid = pid;
+		this.address = address;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.placeOfEmployment = placeOfEmployment;
+	}
+	
 	
 	public String getFirstName() {
 		return firstName;

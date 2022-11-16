@@ -2,10 +2,16 @@ package ftn.isa.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class AppointmentPeriod 
 {
+	@Column
 	private Date startDate;
-
+	
+	@Column
 	private Date endDate;
 
 	public Date getStartDate() {
