@@ -11,7 +11,6 @@ import ftn.isa.model.MedicalStaff;
 
 public class MedicalCenterDTO 
 {
-	private Long id;
 	private String name;
 	
 	private String location;
@@ -23,14 +22,11 @@ public class MedicalCenterDTO
 	private List<Appointment> appointments; 
 	private List<MedicalStaff> medicalStaff;
 	
-	private Date createdAt;
-	private Date updatedAt;
-	
 	public MedicalCenterDTO() {}
 	
 	public MedicalCenterDTO(MedicalCenter medicalCenter) 
 	{
-		this(medicalCenter.getId(),medicalCenter.getName(),
+		this(medicalCenter.getName(),
 				medicalCenter.getAddress().getLocation(),
 				medicalCenter.getAddress().getCity(),
 				medicalCenter.getAddress().getCountry(),
@@ -38,22 +34,18 @@ public class MedicalCenterDTO
 				medicalCenter.getAvgRating());
 	}
 	
-	public MedicalCenterDTO(Long id, String name, String location,String city,String country, String description, double avgRating) {
+	public MedicalCenterDTO(String name, String location,String city,String country, String description, double avgRating) 
+	{
 		super();
-		this.id = id;
 		this.name = name;
-		
 		this.description = description;
 		this.avgRating = avgRating;		
+		this.location = location;
+		this.city = city;
+		this.country = country;
 		this.appointments = new ArrayList<>();
 		this.medicalStaff = new ArrayList<>();
 	}
-
-	public Long getId() 
-	{
-		return id;
-	}
-
 
 	public String getName() {
 		return name;
@@ -91,13 +83,4 @@ public class MedicalCenterDTO
 		return medicalStaff;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-	
-	
 }

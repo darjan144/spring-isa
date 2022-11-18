@@ -8,7 +8,6 @@ import ftn.isa.model.Enums.BloodTypeENUM;
 
 public class QuestionnaireDTO 
 {
-	private Long id;
 	
 	private Long patientId;
 	
@@ -27,10 +26,10 @@ public class QuestionnaireDTO
 	}
 	
 
-	public QuestionnaireDTO(Long id, Long patientId, String description, BloodTypeENUM bloodType, String bloodPressure,
-			String symptoms, Date date, double weight) {
+	public QuestionnaireDTO(Long patientId, String description, BloodTypeENUM bloodType, String bloodPressure,
+			String symptoms, Date date, double weight) 
+	{
 		super();
-		this.id = id;
 		this.patientId = patientId;
 		this.description = description;
 		this.bloodType = bloodType;
@@ -40,9 +39,7 @@ public class QuestionnaireDTO
 		this.weight = weight;
 	}
 
-	public Long getId() {
-		return id;
-	}
+	
 
 	public Long getPatientId() {
 		return patientId;

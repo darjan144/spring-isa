@@ -21,7 +21,7 @@ import ftn.isa.model.Enums.RoleENUM;
 @Entity
 @Inheritance(strategy = SINGLE_TABLE)
 @DiscriminatorColumn(name="roleName",discriminatorType=STRING)
-@Table(name="\"User\"")
+@Table(name="registeredUsers")
 public class User 
 {
 	@Id
@@ -40,10 +40,10 @@ public class User
 	@Embedded
 	private PersonalInfo personalInfo;
 	
-	@Column(name = "createdAt", nullable = false)
+	@Column(name = "createdAt", nullable = true)
 	private Date createdAt;
 	
-	@Column(name = "updatedAt", nullable = false)
+	@Column(name = "updatedAt", nullable = true)
 	private Date updatedAt;
 
 	
@@ -52,16 +52,12 @@ public class User
 		
 	}
 	
-	public User(Long id, String email, String password, RoleENUM role, PersonalInfo personalInfo, Date createdAt,
-			Date updatedAt) {
+	public User(String email, String password, RoleENUM role, PersonalInfo personalInfo) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.role = role;
 		this.personalInfo = personalInfo;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 	}
 
 

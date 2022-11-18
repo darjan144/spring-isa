@@ -40,16 +40,17 @@ public class Questionnaire
 	@Column
 	private double weight;
 	
+	//need updated and created at
+	
 	public Questionnaire() {
 		
 	}
 	
 	
 	
-	public Questionnaire(Long id, Long patientId, String description, BloodTypeENUM bloodType, String bloodPressure,
+	public Questionnaire(Long patientId, String description, BloodTypeENUM bloodType, String bloodPressure,
 			String symptoms, Date date, double weight) {
 		super();
-		this.id = id;
 		this.patientId = patientId;
 		this.description = description;
 		this.bloodType = bloodType;

@@ -13,7 +13,7 @@ public class UserMapper
 	
 	public UserDTO toDTO(User user) 
 	{
-		return new UserDTO(user.getId(),user.getEmail(),
+		return new UserDTO(user.getEmail(),
 				user.getPassword(),
 				user.getRole(),
 				user.getPersonalInfo().getFirstName(),
@@ -24,23 +24,21 @@ public class UserMapper
 				user.getPersonalInfo().getAddress().getCountry(),
 				user.getPersonalInfo().getGender(),
 				user.getPersonalInfo().getPhoneNumber(),
-				user.getPersonalInfo().getPlaceOfEmployment(),
-				user.getCreatedAt(),
-				user.getUpdatedAt());
-		
+				user.getPersonalInfo().getPlaceOfEmployment()
+				);
 	}
 	
 	
 	//userCreationDTO instead of userDTO
 	public User toUser(UserDTO userDTO) 
 	{
-		return new User(userDTO.getId(),
+		return new User(
 				userDTO.getEmail(),
 				userDTO.getPassword(),
 				userDTO.getRole(),
 					new PersonalInfo(userDTO.getFirstName(),userDTO.getLastName(),userDTO.getPid(),
 							new Address(userDTO.getLocation(),userDTO.getCity(),userDTO.getCountry()),userDTO.getGender(),
-									 userDTO.getPhoneNumber(),userDTO.getPlaceOfEmployment()), userDTO.getCreatedAt(), userDTO.getUpdatedAt()				
+									 userDTO.getPhoneNumber(),userDTO.getPlaceOfEmployment())				
 				);
 
 	}

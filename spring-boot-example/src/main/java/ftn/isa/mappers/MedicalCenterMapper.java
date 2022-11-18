@@ -12,7 +12,7 @@ public class MedicalCenterMapper
 
 	public MedicalCenterDTO toDTO(MedicalCenter medicalCenter) 
 	{
-		return new MedicalCenterDTO(medicalCenter.getId(),
+		return new MedicalCenterDTO(
 				medicalCenter.getName(),
 				medicalCenter.getAddress().getLocation(),
 				medicalCenter.getAddress().getCity(),
@@ -23,7 +23,7 @@ public class MedicalCenterMapper
 	
 	public MedicalCenter toMedicalCenter(MedicalCenterDTO medicalCenterDTO) 
 	{
-		return new MedicalCenter(medicalCenterDTO.getId(),medicalCenterDTO.getName(),
+		return new MedicalCenter(medicalCenterDTO.getName(),
 					new Address(medicalCenterDTO.getLocation(),medicalCenterDTO.getCity(),
 							medicalCenterDTO.getCountry()),
 					medicalCenterDTO.getDescription(),medicalCenterDTO.getAvgRating());

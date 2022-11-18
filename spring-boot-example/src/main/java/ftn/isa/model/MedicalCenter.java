@@ -39,19 +39,18 @@ public class MedicalCenter
 	@OneToMany(mappedBy = "medicalCenter", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<MedicalStaff> medicalStaff;
 	
-	@Column(name = "createdAt", nullable = false)
+	@Column(name = "createdAt", nullable = true)
 	private Date createdAt;
 	
-	@Column(name = "updatedAt", nullable = false)
+	@Column(name = "updatedAt", nullable = true)
 	private Date updatedAt;
 	
 	public MedicalCenter() {}
 	
 	
 	
-	public MedicalCenter(Long id, String name, Address address, String description, double avgRating) {
+	public MedicalCenter(String name, Address address, String description, double avgRating) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.description = description;

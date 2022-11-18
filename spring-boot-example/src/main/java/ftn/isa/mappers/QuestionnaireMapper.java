@@ -10,7 +10,7 @@ public class QuestionnaireMapper
 {
 	public QuestionnaireDTO toDTO(Questionnaire questionnaire) 
 	{
-		return new QuestionnaireDTO(questionnaire.getId(),
+		return new QuestionnaireDTO(
 				questionnaire.getPatientId(),
 				questionnaire.getDescription(),
 				questionnaire.getBloodType(),
@@ -22,7 +22,7 @@ public class QuestionnaireMapper
 	
 	public Questionnaire toQuestionnaire(QuestionnaireDTO questionnaireDTO) 
 	{
-			return new Questionnaire(questionnaireDTO.getId(),
+			return new Questionnaire(
 					questionnaireDTO.getPatientId(),questionnaireDTO.getDescription(),
 					questionnaireDTO.getBloodType(),
 					questionnaireDTO.getBloodPressure(),

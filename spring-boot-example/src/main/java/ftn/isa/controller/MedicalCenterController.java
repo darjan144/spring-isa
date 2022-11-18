@@ -54,6 +54,8 @@ public class MedicalCenterController
 		return new ResponseEntity<>(medicalCenterMapper.toDTO(medicalCenter),HttpStatus.CREATED);
 	}
 	
+	//sortiranje se radi na beku
+	
 	
 	
 }

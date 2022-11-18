@@ -1,5 +1,6 @@
 package ftn.isa.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,11 @@ public class UserService
 	}
 	
 	public User save(User user) 
-	{		
+	{	
+		
+		//set created at/updated at here
+		//user.setCreatedAt(new Date());
+		
 		return userRepository.save(user);
 	}
 	
