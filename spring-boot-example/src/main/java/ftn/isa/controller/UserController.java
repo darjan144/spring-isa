@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ftn.isa.dto.UserCreationDTO;
 import ftn.isa.dto.UserDTO;
+import ftn.isa.mappers.UserCreationMapper;
 import ftn.isa.mappers.UserMapper;
 import ftn.isa.model.User;
+import ftn.isa.model.Enums.RoleENUM;
 import ftn.isa.service.UserService;
 
 
@@ -31,6 +34,8 @@ public class UserController
 	private UserService userService;
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private UserCreationMapper userCreationMapper;
 	
 	/*
 	 * Get all users
@@ -82,12 +87,35 @@ public class UserController
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO)
 	{
+		
+		//System.out.print(userDTO.getp);
+		
 		User user = userMapper.toUser(userDTO);
 		
 		userService.save(user);
 		
 		return new ResponseEntity<>(userMapper.toDTO(user),HttpStatus.CREATED);
 	}
+	
+	
+	
+	@PostMapping(value="/patient",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserCreationDTO> createUser(@RequestBody UserCreationDTO userCreationDTO)
+	{
+		System.out.print("++++++++++++++++++++++++GENDER IS: "+userCreationDTO.getGender()+ "+++++++++++++++++++++++++++++++++++++++");
+		
+		
+		System.out.print("+++++++++++++++++++++++++++++++++++++++++++++++++PASSWORD IS " + userCreationDTO.getPassword()+" +++++++++++++++++++++++++++++");
+		
+		User user = userCreationMapper.toUser(userCreationDTO);
+		
+		user.setRole(RoleENUM.Patient);
+		
+		userService.save(user);
+		
+		return new ResponseEntity<>(userCreationMapper.toDTO(user),HttpStatus.CREATED);
+	}
+	
 					
 	/*
 	 * url: PUT /api/users/1

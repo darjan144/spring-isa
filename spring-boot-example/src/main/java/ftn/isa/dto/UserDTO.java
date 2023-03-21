@@ -1,19 +1,11 @@
 package ftn.isa.dto;
 
-import java.util.Date;
-
-import ftn.isa.model.Address;
-import ftn.isa.model.PersonalInfo;
 import ftn.isa.model.User;
 import ftn.isa.model.Enums.GenderENUM;
-import ftn.isa.model.Enums.RoleENUM;
 
 public class UserDTO 
 {
 	private String email;
-	//dont use password inside DTO,use only in userCreationDTO,update later
-	private String password;
-	private RoleENUM role;
 	
 	//personalInfo fields
 	private String firstName;
@@ -29,7 +21,6 @@ public class UserDTO
 	private String phoneNumber;
 	private String placeOfEmployment;
 	
-	
 	public UserDTO() 
 	{
 		
@@ -39,8 +30,6 @@ public class UserDTO
 	public UserDTO(User user)
 	{
 		this(user.getEmail(),
-				user.getPassword(),
-				user.getRole(),
 				user.getPersonalInfo().getFirstName(),
 				user.getPersonalInfo().getLastName(),
 				user.getPersonalInfo().getPid(),
@@ -55,13 +44,11 @@ public class UserDTO
 	
 	
 
-	public UserDTO(String email, String password, RoleENUM role, String firstName, String lastName, String pid,
+	public UserDTO(String email, String firstName, String lastName, String pid,
 			String location, String city, String country, GenderENUM gender, String phoneNumber,
 			String placeOfEmployment) {
 		super();
 		this.email = email;
-		this.password = password;
-		this.role = role;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.pid = pid;
@@ -76,14 +63,6 @@ public class UserDTO
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public RoleENUM getRole() {
-		return role;
 	}
 
 	public String getFirstName() {
@@ -121,9 +100,4 @@ public class UserDTO
 	public String getPlaceOfEmployment() {
 		return placeOfEmployment;
 	}
-
-
-	
-	
-	
 }

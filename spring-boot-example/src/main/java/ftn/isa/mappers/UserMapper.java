@@ -14,8 +14,6 @@ public class UserMapper
 	public UserDTO toDTO(User user) 
 	{
 		return new UserDTO(user.getEmail(),
-				user.getPassword(),
-				user.getRole(),
 				user.getPersonalInfo().getFirstName(),
 				user.getPersonalInfo().getLastName(),
 				user.getPersonalInfo().getPid(),
@@ -34,8 +32,6 @@ public class UserMapper
 	{
 		return new User(
 				userDTO.getEmail(),
-				userDTO.getPassword(),
-				userDTO.getRole(),
 					new PersonalInfo(userDTO.getFirstName(),userDTO.getLastName(),userDTO.getPid(),
 							new Address(userDTO.getLocation(),userDTO.getCity(),userDTO.getCountry()),userDTO.getGender(),
 									 userDTO.getPhoneNumber(),userDTO.getPlaceOfEmployment())				

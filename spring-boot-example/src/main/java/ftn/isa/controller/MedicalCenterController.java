@@ -2,6 +2,7 @@ package ftn.isa.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,8 @@ public class MedicalCenterController
 {
 	@Autowired
 	private MedicalCenterService medicalCenterService;
+	
+	
 	
 	@Autowired
 	private MedicalCenterMapper medicalCenterMapper;
@@ -56,18 +59,33 @@ public class MedicalCenterController
 		return new ResponseEntity<>(medicalCenterMapper.toDTO(medicalCenter),HttpStatus.CREATED);
 	}
 	
+//	// GET /api/medicalCenter?page=0&size=5&sort=name,DESC
+//	@GetMapping
+//	public ResponseEntity<List<MedicalCenterDTO>> getMedicalCentersPage(Pageable page)
+//	{
+//		// page object holds data about pagination and sorting
+//		// the object is created based on the url parameters "page", "size" and "sort"
+//		
+//		Page<MedicalCenter> medicalCenters = medicalCenterService.findAll(page);
+//		List<MedicalCenterDTO> medicalCentersDTO=new ArrayList<>();
+//		
+//		for(MedicalCenter medicalCenter : medicalCenters) 
+//		{
+//			medicalCentersDTO.add(medicalCenterMapper.toDTO(medicalCenter));
+//		}
+//		
+//		return new ResponseEntity<>(medicalCentersDTO,HttpStatus.OK);
+//	}
 	
+	// GET /api/medicalCenter?page=0&size=5&sort=name,DESC
 	@GetMapping
-	public ResponseEntity<List<MedicalCenterDTO>> getMedicalCentersPage(Pageable page)
+	public ResponseEntity<Page<MedicalCenterDTO>> getMedicalCentersPage(Pageable page)
 	{
+		// page object holds data about pagination and sorting
+		// the object is created based on the url parameters "page", "size" and "sort"
+		
 		Page<MedicalCenter> medicalCenters = medicalCenterService.findAll(page);
-		
-		List<MedicalCenterDTO> medicalCentersDTO=new ArrayList<>();
-		
-		for(MedicalCenter medicalCenter : medicalCenters) 
-		{
-			medicalCentersDTO.add(medicalCenterMapper.toDTO(medicalCenter));
-		}
+		Page<MedicalCenterDTO> medicalCentersDTO = medicalCenters.map(medicalCenter->medicalCenterMapper.toDTO(medicalCenter));
 		
 		return new ResponseEntity<>(medicalCentersDTO,HttpStatus.OK);
 	}

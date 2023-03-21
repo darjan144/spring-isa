@@ -31,7 +31,6 @@ public class Patient extends User
 		
 	}
 	
-	
 	public Patient(LoyaltyCategoryENUM loyaltyCategory, int points, int numberOfPenalties,
 			Questionnaire questionnaire) {
 		super();
@@ -40,9 +39,7 @@ public class Patient extends User
 		this.numberOfPenalties = numberOfPenalties;
 		this.questionnaire = questionnaire;
 	}
-
-
-
+	
 
 	public LoyaltyCategoryENUM getLoyaltyCategory() {
 		return loyaltyCategory;

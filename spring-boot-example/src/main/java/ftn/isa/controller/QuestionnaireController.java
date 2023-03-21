@@ -16,6 +16,7 @@ import ftn.isa.dto.QuestionnaireDTO;
 import ftn.isa.mappers.QuestionnaireMapper;
 import ftn.isa.model.Questionnaire;
 import ftn.isa.service.QuestionnaireService;
+import ftn.isa.service.UserService;
 
 @RestController
 @RequestMapping(value = "api/questionnaire")
@@ -26,6 +27,9 @@ public class QuestionnaireController
 	
 	@Autowired
 	private QuestionnaireMapper questionnaireMapper;
+	
+//	@Autowired
+//	private UserService userService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<QuestionnaireDTO>> getAllQuestionnaires()
@@ -45,7 +49,10 @@ public class QuestionnaireController
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<QuestionnaireDTO> saveQuestionnaire(@RequestBody QuestionnaireDTO questionnaireDTO)
 	{
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+questionnaireDTO.isAnswerToQuestion1());
 		Questionnaire questionnaire = questionnaireMapper.toQuestionnaire(questionnaireDTO);
+		
+		System.out.println("QUESTIONNAIREEHHEHE" + questionnaire.getQuestionnaireAnswers());
 		
 		questionnaire = questionnaireService.save(questionnaire);
 		

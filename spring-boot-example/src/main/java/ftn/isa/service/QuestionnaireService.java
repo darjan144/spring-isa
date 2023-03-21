@@ -1,8 +1,11 @@
 package ftn.isa.service;
 
+import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import ftn.isa.model.Questionnaire;
 import ftn.isa.repository.QuestionnaireRepository;
 
@@ -24,6 +27,14 @@ public class QuestionnaireService
 	
 	public Questionnaire save(Questionnaire questionnaire) 
 	{
+		
+		if(questionnaire.getCreatedAt() == null) 
+		{
+			questionnaire.setCreatedAt(new Date());
+		}
+		
+		questionnaire.setUpdatedAt(new Date());
+		
 		return questionnaireRepository.save(questionnaire);
 	}
 	
@@ -31,4 +42,8 @@ public class QuestionnaireService
 	{
 		questionnaireRepository.deleteById(id);
 	}
+	
+	
+	
+	
 }

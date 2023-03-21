@@ -19,8 +19,6 @@ public class MedicalCenterDTO
 	
 	private String description;
 	private double avgRating;
-	private List<Appointment> appointments; 
-	private List<MedicalStaff> medicalStaff;
 	
 	public MedicalCenterDTO() {}
 	
@@ -42,9 +40,7 @@ public class MedicalCenterDTO
 		this.avgRating = avgRating;		
 		this.location = location;
 		this.city = city;
-		this.country = country;
-		this.appointments = new ArrayList<>();
-		this.medicalStaff = new ArrayList<>();
+		this.country = country;	
 	}
 
 	public String getName() {
@@ -73,14 +69,4 @@ public class MedicalCenterDTO
 	public double getAvgRating() {
 		return avgRating;
 	}
-
-	public List<Appointment> getAppointments() {
-		return appointments;
-	}
-
-
-	public List<MedicalStaff> getMedicalStaff() {
-		return medicalStaff;
-	}
-
 }

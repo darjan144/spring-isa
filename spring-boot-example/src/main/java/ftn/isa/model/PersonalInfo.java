@@ -84,6 +84,7 @@ public class PersonalInfo
 	public String getPlaceOfEmployment() {
 		return placeOfEmployment;
 	}
+	
 	public void setPlaceOfEmployment(String placeOfEmployment) {
 		this.placeOfEmployment = placeOfEmployment;
 	}
